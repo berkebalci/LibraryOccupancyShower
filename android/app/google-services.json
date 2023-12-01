@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "5706359894",
+    "project_id": "talaskutuphaneleri",
+    "storage_bucket": "talaskutuphaneleri.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5706359894:android:af4c7bcb916cf7a4a347f7",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq8K_RmbpSlhaefNVUxSuJmBb8A8bU6-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
