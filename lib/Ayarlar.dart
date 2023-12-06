@@ -5,7 +5,6 @@ void main() {
 }
 
 class Ayarlar extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,12 +13,10 @@ class Ayarlar extends StatelessWidget {
         body: Stack(
           children: [
             Positioned(
-              top: 240,
-              left:120,
+              top: MediaQuery.of(context).size.height / 2 - 140,
+              left: MediaQuery.of(context).size.width / 2-80,
               child: ElevatedButton(
-                onPressed: () {
-
-                },
+                onPressed: () {},
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF53715A)),
                   shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -39,11 +36,10 @@ class Ayarlar extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 240,
-              left: 260,
+              top: MediaQuery.of(context).size.height / 2 - 140,
+              left: MediaQuery.of(context).size.width / 2+50,
               child: ElevatedButton(
-                onPressed: () {
-                },
+                onPressed: () {},
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 157, 91, 43)),
                   shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -62,10 +58,10 @@ class Ayarlar extends StatelessWidget {
                 ),
               ),
             ),
-            const Positioned(
-              top: 60,
-              left: 130,
-              child: Text(
+            Positioned(
+              top: MediaQuery.of(context).size.height / 2 - 320,
+              left: MediaQuery.of(context).size.width / 3,
+              child: const Text(
                 "Ayarlar",
                 style: TextStyle(
                   shadows: [
@@ -83,10 +79,21 @@ class Ayarlar extends StatelessWidget {
                 ),
               ),
             ),
-            const Positioned(
-              top: 265,
-              right: 310,
-              child: Text(
+            Positioned(
+              top: 135,
+              left: 10,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width-20,
+                child: Divider(
+                  color: Colors.white,
+                  thickness: 6,
+                ),
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height / 2 -120,
+              left: MediaQuery.of(context).size.width / 2 - 160,
+              child: const Text(
                 "Dil",
                 style: TextStyle(
                   shadows: [
@@ -108,4 +115,5 @@ class Ayarlar extends StatelessWidget {
     );
   }
 }
+
 
