@@ -164,6 +164,20 @@ class Anasayfa extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+              top: MediaQuery.of(context).size.height / 2 + 360,
+              left: MediaQuery.of(context).size.width / 2-70,
+              child: Text(
+                "Erciyes Üniversitesi 2023",
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.normal,
+                  color: Colors.grey,
+                  fontFamily: 'RobotoMono',
+                ),
+              ),
+            ),
           ],
         ),
       ),
