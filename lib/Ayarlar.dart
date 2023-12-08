@@ -59,8 +59,8 @@ class Ayarlar extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height / 2 - 320,
-              left: MediaQuery.of(context).size.width / 3,
+              top: MediaQuery.of(context).size.height / 2 - 340,
+              left: MediaQuery.of(context).size.width / 3-5,
               child: const Text(
                 "Ayarlar",
                 style: TextStyle(
@@ -71,7 +71,7 @@ class Ayarlar extends StatelessWidget {
                       offset: Offset(2.0, 2.0),
                     ),
                   ],
-                  fontSize: 41,
+                  fontSize: 45,
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.normal,
                   color: Color.fromARGB(255, 157, 91, 43),
@@ -80,13 +80,13 @@ class Ayarlar extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 135,
+              top:130,
               left: 10,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width-20,
                 child: Divider(
                   color: Colors.white,
-                  thickness: 6,
+                  thickness: 7,
                 ),
               ),
             ),
@@ -109,11 +109,24 @@ class Ayarlar extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+              top: MediaQuery.of(context).size.height / 2 + 360,
+              left: MediaQuery.of(context).size.width / 2-70,
+              child: Text(
+                "Erciyes Üniversitesi 2023",
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.normal,
+                  color: Colors.grey,
+                  fontFamily: 'RobotoMono',
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
 
