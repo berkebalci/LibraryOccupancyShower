@@ -135,7 +135,7 @@ class Anasayfa extends StatelessWidget {
   }
 }
 
-//fireBase işlemleri için listeleme arayüzü test satırına gidip test edilebilir
+//fireBase işlemleri için listeleme arayüzü. Test satırına gidip test edilebilir
 class DenemeSayfasi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
