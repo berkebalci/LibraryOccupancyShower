@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'firebaseIslemleri.dart'; 
 //import 'package:flutter_application_1/Ayarlar.dart';
 
 Future<void> main() async {
@@ -8,7 +9,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
 );
 
-  runApp(const Anasayfa());
+  runApp( DenemeSayfasi());
 }
 
 class Anasayfa extends StatelessWidget {
@@ -133,3 +134,58 @@ class Anasayfa extends StatelessWidget {
     );
   }
 }
+
+//fireBase işlemleri için listeleme arayüzü test satırına gidip test edilebilir
+class DenemeSayfasi extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  List<String> kutuphaneVerileri = [];
+
+  @override
+  void initState() {
+    super.initState();
+    verileriGetir();
+  }
+
+  Future<void> verileriGetir() async {
+    //test satırı
+    List<String> veriler = await kutuphaneleriListele();//Test etmek için fonksyonu buradan çağır
+    setState(() {
+      kutuphaneVerileri = veriler;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Kütüphane Listesi'),
+      ),
+      body: Center(
+        child: kutuphaneVerileri.isEmpty
+            ? CircularProgressIndicator()
+            : ListView.builder(
+                itemCount: kutuphaneVerileri.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(kutuphaneVerileri[index]),
+                  );
+                },
+              ),
+      ),
+    );
+  }
+}
+
