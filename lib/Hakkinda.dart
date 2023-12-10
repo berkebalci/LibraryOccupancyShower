@@ -33,10 +33,10 @@ class Hakkinda extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 70,
-              left: 130,
+              top: MediaQuery.of(context).size.height / 2 - 340,
+              left: MediaQuery.of(context).size.width / 34,
               child: Text(
-                "Ayarlar",
+                "Uygulama Hakkında",
                 style: TextStyle(
                   shadows: [
                     Shadow(
@@ -60,7 +60,7 @@ class Hakkinda extends StatelessWidget {
                 width: MediaQuery.of(context).size.width - 20,
                 child: Divider(
                   color: Colors.white,
-                  thickness: 6,
+                  thickness: 7,
                 ),
               ),
             ),
@@ -84,6 +84,8 @@ class Hakkinda extends StatelessWidget {
     );
   }
 }
+
+
 
 
 
