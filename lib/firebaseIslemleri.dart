@@ -1,9 +1,11 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 Future<List<String>> kutuphaneleriListele() async {
   List<String> kutuphaneler = [];
-  
+  try{
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await FirebaseFirestore.instance.collection('kutuphaneler').get();
 
@@ -13,14 +15,17 @@ Future<List<String>> kutuphaneleriListele() async {
         kutuphaneler.add(kutuphaneAdi);
       }
     }
- 
+  } catch(e)
+  {
+  //birşeyler ters gitti uyarısı ver
+  }
   return kutuphaneler;
 }
 
-Future<List<String>> kutupaneDosyaYollari() async {
+Future<List<String>> kutupaneDosyaYollariniListele() async {
 
   List<String> dosyaYolari = [];
-
+  try{
   QuerySnapshot<Map<String, dynamic>> snapshot =
      await FirebaseFirestore.instance.collection('kutuphaneler').get();
 
@@ -29,13 +34,16 @@ Future<List<String>> kutupaneDosyaYollari() async {
       dosyaYolari.add(doc.id);
     }
 
-
+  }catch(e)
+  {
+  //birşeyler ters gitti uyarısı ver
+  }
     return dosyaYolari;
 }
 
 Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
   List<String> bolumler = [];
-
+  try{
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await FirebaseFirestore.instance.collection('/kutuphaneler/'+ kutuphaneDosyaYolu +'/bolumler').get();
 
@@ -45,13 +53,15 @@ Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
         bolumler.add(bolumAdi);
       }
     }
- 
+  } catch (e){
+  //birşeyler ters gitti uyarısı ver
+  }
   return bolumler;
 }
 
-Future<List<String>> doluKotluklarListele(String kutuphaneDosyaYolu) async {
+Future<List<String>> doluKotluklariListele(String kutuphaneDosyaYolu) async {
   List<String> doluKoltuklar = [];
-
+  try{
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await FirebaseFirestore.instance.collection('/kutuphaneler/'+ kutuphaneDosyaYolu +'/bolumler').get();
 
@@ -61,24 +71,65 @@ Future<List<String>> doluKotluklarListele(String kutuphaneDosyaYolu) async {
         doluKoltuklar.add(bolumunDoluKoldugu);
       }
     }
- 
+  } catch(e){
+     //birşeyler ters gitti uyarısı ver
+  }
   return doluKoltuklar;
 }
 
 Future<List<String>> kapasiteleriListele(String kutuphaneDosyaYolu) async {
   List<String> kapasite = [];
-
+  try {
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await FirebaseFirestore.instance.collection('/kutuphaneler/'+ kutuphaneDosyaYolu +'/bolumler').get();
 
     for (QueryDocumentSnapshot<Map<String, dynamic>> doc in snapshot.docs) {
-   {
-        String bolumunKapasitesi = doc.data()['kapasite'].toString();
-        kapasite.add(bolumunKapasitesi);
-      }
+      String bolumunKapasitesi = doc.data()['kapasite'].toString();
+      kapasite.add(bolumunKapasitesi);
     }
- 
+  } catch (e){
+  //birşeyler ters gitti uyarısı ver
+  }
   return kapasite;
 }
 
 
+Future<List<String>> kutuphaneKapasiteleriListele() async {
+
+  List<String> dosyaYollari = await kutupaneDosyaYollariniListele();
+  List<String> kapasiteListesi = [];
+  int toplam;
+
+  for (int i = 0; i < dosyaYollari.length; i++) {
+    List<String> bolumKapasiteListesi = await kapasiteleriListele(dosyaYollari[i]);
+    toplam = 0;
+
+    for (int j = 0; j < bolumKapasiteListesi.length; j++) {  
+      toplam = toplam + int.parse(bolumKapasiteListesi[j]);  
+    }
+
+    kapasiteListesi.add(toplam.toString());
+  }
+
+  return kapasiteListesi;
+}
+
+Future<List<String>> kutuphaneDoluKoltuklariListele() async {
+
+  List<String> dosyaYollari = await kutupaneDosyaYollariniListele();
+  List<String> kapasiteListesi = [];
+  int toplam;
+
+  for (int i = 0; i < dosyaYollari.length; i++) {
+    List<String> bolumKapasiteListesi = await doluKotluklariListele(dosyaYollari[i]);
+    toplam = 0;
+
+    for (int j = 0; j < bolumKapasiteListesi.length; j++) {  
+      toplam = toplam + int.parse(bolumKapasiteListesi[j]);  
+    }
+
+    kapasiteListesi.add(toplam.toString());
+  }
+
+  return kapasiteListesi;
+}

@@ -9,7 +9,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
 );
 
-  runApp( DenemeSayfasi());
+  runApp( Anasayfa());
 }
 
 class Anasayfa extends StatelessWidget {
@@ -134,58 +134,3 @@ class Anasayfa extends StatelessWidget {
     );
   }
 }
-
-//fireBase işlemleri için listeleme arayüzü. Test satırına gidip test edilebilir
-class DenemeSayfasi extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  List<String> kutuphaneVerileri = [];
-
-  @override
-  void initState() {
-    super.initState();
-    verileriGetir();
-  }
-
-  Future<void> verileriGetir() async {
-    //test satırı
-    List<String> veriler = await kutuphaneleriListele();//Test etmek için fonksyonu buradan çağır
-    setState(() {
-      kutuphaneVerileri = veriler;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Kütüphane Listesi'),
-      ),
-      body: Center(
-        child: kutuphaneVerileri.isEmpty
-            ? CircularProgressIndicator()
-            : ListView.builder(
-                itemCount: kutuphaneVerileri.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(kutuphaneVerileri[index]),
-                  );
-                },
-              ),
-      ),
-    );
-  }
-}
-
