@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/services/firebaseIslemleri.dart';
 import 'ayarlar.dart';
 import 'hakkinda.dart';
 import 'kutuphanelerListesi.dart';
@@ -39,7 +40,14 @@ class Anasayfa extends StatelessWidget {
               width: 116,
               height: 116,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  List<String> dosyayolu =
+                      await kutupaneDosyaYollariniListele();
+                  //TODO: Geçici olarak async yapılıyor
+                  for (var x in await doluKotluklariListele(dosyayolu[0])) {
+                    print(x);
+                    print("sj");
+                  }
                   Navigator.push(
                       context,
                       MaterialPageRoute(

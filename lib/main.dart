@@ -11,7 +11,9 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(Anasayfa());
+  runApp(MaterialApp(
+    
+    home: Anasayfa()));
 }
 
 /*class Anasayfa extends StatelessWidget {
