@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_application_1/services/pages/anasayfa.dart';
 import 'firebase_options.dart';
 import 'services/firebaseIslemleri.dart';
 //import 'package:flutter_application_1/Ayarlar.dart';
@@ -13,7 +14,7 @@ Future<void> main() async {
   runApp(Anasayfa());
 }
 
-class Anasayfa extends StatelessWidget {
+/*class Anasayfa extends StatelessWidget {
   const Anasayfa({super.key});
 
   @override
@@ -136,4 +137,4 @@ class Anasayfa extends StatelessWidget {
       ),
     );
   }
-}
+}*/
