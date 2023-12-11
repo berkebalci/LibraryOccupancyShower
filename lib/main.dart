@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'firebaseIslemleri.dart'; 
+import 'firebaseIslemleri.dart';
 //import 'package:flutter_application_1/Ayarlar.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); //TODO: Solution for  binding has not yet been initialized error.
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
 
-  runApp( Anasayfa());
+  runApp(Anasayfa());
 }
 
 class Anasayfa extends StatelessWidget {
@@ -50,7 +51,9 @@ class Anasayfa extends StatelessWidget {
                 width: 116,
                 height: 116,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromARGB(255, 157, 91, 43),
                     shape: RoundedRectangleBorder(
