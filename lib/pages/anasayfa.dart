@@ -45,7 +45,7 @@ class Anasayfa extends StatelessWidget {
                       await kutupaneDosyaYollariniListele();
                   //TODO: Geçici olarak async yapılıyor
                   for (var x in await doluKotluklariListele(dosyayolu[0])) {
-                    print(x);
+                    print(x.runtimeType);
                     print("sj");
                   }
                   Navigator.push(

@@ -6,7 +6,7 @@ import 'services/firebaseIslemleri.dart';
 //import 'package:flutter_application_1/Ayarlar.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); //TODO: Solution for  binding has not yet been initialized error.
+  WidgetsFlutterBinding.ensureInitialized(); // Solution for  binding has not yet been initialized error.
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

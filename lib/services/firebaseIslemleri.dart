@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<List<String>> kutuphaneleriListele() async { //
+Future<List<String>> kutuphaneleriListele() async {
+  //
   List<String> kutuphaneler = [];
   try {
     QuerySnapshot<Map<String, dynamic>> snapshot =
@@ -21,7 +22,8 @@ Future<List<String>> kutuphaneleriListele() async { //
   return kutuphaneler;
 }
 
-Future<List<String>> kutupaneDosyaYollariniListele() async { //Liste şeklinde document isimlerini listeliyor
+/*Future<List<String>> kutupaneDosyaYollariniListele() async {
+  //Liste şeklinde document isimlerini listeliyor
   List<String> dosyaYolari = [];
   try {
     QuerySnapshot<Map<String, dynamic>> snapshot =
@@ -34,9 +36,10 @@ Future<List<String>> kutupaneDosyaYollariniListele() async { //Liste şeklinde d
     //birşeyler ters gitti uyarısı ver
   }
   return dosyaYolari;
-}
+}*/
 
-Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async { //Bölüm isimlerini Liste<String> şeklinde döndürüyor
+Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
+  //Bölüm isimlerini Liste<String> şeklinde döndürüyor
   List<String> bolumler = [];
   try {
     QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
@@ -56,8 +59,10 @@ Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async { //Böl�
   return bolumler;
 }
 
-Future<List<String>> doluKotluklariListele(String kutuphaneDosyaYolu) async {
-  List<String> doluKoltuklar = [];
+Future<List<int>> doluKotluklariListele(String kutuphaneDosyaYolu) async {
+  //Seçilen kütüphanedeki doluluk parametresinin String değeri List<int> olarak dönüyor
+
+  List<int> doluKoltuklar = [];
   try {
     QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
         .instance
@@ -66,7 +71,7 @@ Future<List<String>> doluKotluklariListele(String kutuphaneDosyaYolu) async {
 
     for (QueryDocumentSnapshot<Map<String, dynamic>> doc in snapshot.docs) {
       {
-        String bolumunDoluKoldugu = doc.data()['doluKoltuk'].toString();
+        int bolumunDoluKoldugu = int.parse(doc.data()['doluKoltuk'].toString());
         doluKoltuklar.add(bolumunDoluKoldugu);
       }
     }
@@ -76,8 +81,9 @@ Future<List<String>> doluKotluklariListele(String kutuphaneDosyaYolu) async {
   return doluKoltuklar;
 }
 
-Future<List<String>> kapasiteleriListele(String kutuphaneDosyaYolu) async {
-  List<String> kapasite = [];
+Future<List<int>> kapasiteleriListele(String kutuphaneDosyaYolu) async {
+  //Seçili kütüphanenin kapasitesini int şeklinde döndüren fonksiyon
+  List<int> kapasite = [];
   try {
     QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
         .instance
@@ -85,7 +91,7 @@ Future<List<String>> kapasiteleriListele(String kutuphaneDosyaYolu) async {
         .get();
 
     for (QueryDocumentSnapshot<Map<String, dynamic>> doc in snapshot.docs) {
-      String bolumunKapasitesi = doc.data()['kapasite'].toString();
+      int bolumunKapasitesi = int.parse(doc.data()['kapasite'].toString());
       kapasite.add(bolumunKapasitesi);
     }
   } catch (e) {
@@ -98,20 +104,24 @@ Future<List<String>> kutuphaneKapasiteleriListele() async {
   List<String> dosyaYollari = await kutupaneDosyaYollariniListele();
   List<String> kapasiteListesi = [];
   int toplam;
+  try {
+    for (int i = 0; i < dosyaYollari.length; i++) {
+      List<int> bolumKapasiteListesi =
+          await kapasiteleriListele(dosyaYollari[i]);
+      toplam = 0;
+//TODO: Buradaki mantığı anla ve içiçe for döngüsünü kaldır
+      for (int j = 0; j < bolumKapasiteListesi.length; j++) {
+        toplam = toplam + bolumKapasiteListesi[j];
+      }
 
-  for (int i = 0; i < dosyaYollari.length; i++) {
-    List<String> bolumKapasiteListesi =
-        await kapasiteleriListele(dosyaYollari[i]);
-    toplam = 0;
-
-    for (int j = 0; j < bolumKapasiteListesi.length; j++) {
-      toplam = toplam + int.parse(bolumKapasiteListesi[j]);
+      kapasiteListesi.add(toplam.toString());
     }
 
-    kapasiteListesi.add(toplam.toString());
+    return kapasiteListesi;
+  } catch (e) {
+    print("The error is : $e");
+    throw Exception(e);
   }
-
-  return kapasiteListesi;
 }
 
 Future<List<String>> kutuphaneDoluKoltuklariListele() async {

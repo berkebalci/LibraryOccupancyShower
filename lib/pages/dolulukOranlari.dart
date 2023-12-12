@@ -18,7 +18,7 @@ class Ikinci extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 const Image(
-                  image: AssetImage("lib/assets/images/talasLib.jpeg"),
+                  image: AssetImage("lib/assets/talasLib.jpeg"),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(13.0),
