@@ -22,7 +22,7 @@ Future<List<String>> kutuphaneleriListele() async {
   return kutuphaneler;
 }
 
-/*Future<List<String>> kutupaneDosyaYollariniListele() async {
+Future<List<String>> kutupaneDosyaYollariniListele() async {
   //Liste şeklinde document isimlerini listeliyor
   List<String> dosyaYolari = [];
   try {
@@ -36,7 +36,7 @@ Future<List<String>> kutuphaneleriListele() async {
     //birşeyler ters gitti uyarısı ver
   }
   return dosyaYolari;
-}*/
+}
 
 Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
   //Bölüm isimlerini Liste<String> şeklinde döndürüyor
@@ -59,7 +59,7 @@ Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
   return bolumler;
 }
 
-Future<List<int>> doluKotluklariListele(String kutuphaneDosyaYolu) async {
+Future<List<int>> doluKoltuklariListele(String kutuphaneDosyaYolu) async {
   //Seçilen kütüphanedeki doluluk parametresinin String değeri List<int> olarak dönüyor
 
   List<int> doluKoltuklar = [];
@@ -130,12 +130,12 @@ Future<List<String>> kutuphaneDoluKoltuklariListele() async {
   int toplam;
 
   for (int i = 0; i < dosyaYollari.length; i++) {
-    List<String> bolumKapasiteListesi =
-        await doluKotluklariListele(dosyaYollari[i]);
+    List<int> bolumKapasiteListesi =
+        await doluKoltuklariListele(dosyaYollari[i]);
     toplam = 0;
 
     for (int j = 0; j < bolumKapasiteListesi.length; j++) {
-      toplam = toplam + int.parse(bolumKapasiteListesi[j]);
+      toplam = toplam + bolumKapasiteListesi[j];
     }
 
     kapasiteListesi.add(toplam.toString());

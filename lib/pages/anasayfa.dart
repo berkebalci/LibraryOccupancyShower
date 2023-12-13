@@ -41,10 +41,9 @@ class Anasayfa extends StatelessWidget {
               height: 116,
               child: ElevatedButton(
                 onPressed: () async {
-                  List<String> dosyayolu =
-                      await kutupaneDosyaYollariniListele();
+                  List<String> dosyayolu = await kutuphaneleriListele();
                   //TODO: Geçici olarak async yapılıyor
-                  for (var x in await doluKotluklariListele(dosyayolu[0])) {
+                  for (var x in await doluKoltuklariListele(dosyayolu[0])) {
                     print(x.runtimeType);
                     print("sj");
                   }
