@@ -1,8 +1,6 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<List<String>> kutuphaneleriListele() async {
+/*Future<List<String>> kutuphaneleriListele() async {
   //
   List<String> kutuphaneler = [];
   try {
@@ -11,6 +9,7 @@ Future<List<String>> kutuphaneleriListele() async {
 
     for (QueryDocumentSnapshot<Map<String, dynamic>> doc in snapshot.docs) {
       {
+        print(doc.data()); //{kutuphaneadi: Erciyes Kütüphanesi }
         String kutuphaneAdi = doc.data()['kutuphaneAdi'];
         kutuphaneler.add(kutuphaneAdi);
       }
@@ -20,7 +19,7 @@ Future<List<String>> kutuphaneleriListele() async {
     //birşeyler ters gitti uyarısı ver
   }
   return kutuphaneler;
-}
+}*/
 
 Future<List<String>> kutupaneDosyaYollariniListele() async {
   //Liste şeklinde document isimlerini listeliyor
@@ -38,7 +37,7 @@ Future<List<String>> kutupaneDosyaYollariniListele() async {
   return dosyaYolari;
 }
 
-Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
+/*Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
   //Bölüm isimlerini Liste<String> şeklinde döndürüyor
   List<String> bolumler = [];
   try {
@@ -57,31 +56,39 @@ Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
     //birşeyler ters gitti uyarısı ver
   }
   return bolumler;
-}
+}*/
 
-Future<List<int>> doluKoltuklariListele(String kutuphaneDosyaYolu) async {
+Future<List<int>> doluKoltuklariListele(
+    String kutuphaneDosyaYolu, String bolumismi, String fieldismi) async {
   //Seçilen kütüphanedeki doluluk parametresinin String değeri List<int> olarak dönüyor
 
   List<int> doluKoltuklar = [];
   try {
-    QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+    DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
         .instance
         .collection('/kutuphaneler/' + kutuphaneDosyaYolu + '/bolumler')
+        .doc("$bolumismi")
         .get();
+    if (snapshot.data() != null) {
+      print(snapshot.data()); //{doluKoltuk:8, bolumAdi:sesliBolum,kapasite:24}
+      print(snapshot.data().runtimeType); //Map<String,dynamic>
 
-    for (QueryDocumentSnapshot<Map<String, dynamic>> doc in snapshot.docs) {
-      {
-        int bolumunDoluKoldugu = int.parse(doc.data()['doluKoltuk'].toString());
+      print("If'den çıktı");
+      Map<String,dynamic>? data = snapshot.data(); //{"dolukoltuk":11,"bolumadi","kapasite":24}
+      if (data != null) {
+        int bolumunDoluKoldugu = int.parse(data[fieldismi].toString());
         doluKoltuklar.add(bolumunDoluKoldugu);
       }
     }
   } catch (e) {
     //birşeyler ters gitti uyarısı ver
+    throw Error;
   }
+  print("Dolu koltuk fonksiyonu bitti");
   return doluKoltuklar;
 }
 
-Future<List<int>> kapasiteleriListele(String kutuphaneDosyaYolu) async {
+/*Future<List<int>> kapasiteleriListele(String kutuphaneDosyaYolu) async {
   //Seçili kütüphanenin kapasitesini int şeklinde döndüren fonksiyon
   List<int> kapasite = [];
   try {
@@ -98,9 +105,9 @@ Future<List<int>> kapasiteleriListele(String kutuphaneDosyaYolu) async {
     //birşeyler ters gitti uyarısı ver
   }
   return kapasite;
-}
+}*/
 
-Future<List<String>> kutuphaneKapasiteleriListele() async {
+/*Future<List<String>> kutuphaneKapasiteleriListele() async {
   List<String> dosyaYollari = await kutupaneDosyaYollariniListele();
   List<String> kapasiteListesi = [];
   int toplam;
@@ -122,7 +129,7 @@ Future<List<String>> kutuphaneKapasiteleriListele() async {
     print("The error is : $e");
     throw Exception(e);
   }
-}
+}*/
 
 Future<List<String>> kutuphaneDoluKoltuklariListele() async {
   List<String> dosyaYollari = await kutupaneDosyaYollariniListele();
@@ -131,7 +138,7 @@ Future<List<String>> kutuphaneDoluKoltuklariListele() async {
 
   for (int i = 0; i < dosyaYollari.length; i++) {
     List<int> bolumKapasiteListesi =
-        await doluKoltuklariListele(dosyaYollari[i]);
+        await doluKoltuklariListele(dosyaYollari[i], "sesliBolum","kapasite");
     toplam = 0;
 
     for (int j = 0; j < bolumKapasiteListesi.length; j++) {
