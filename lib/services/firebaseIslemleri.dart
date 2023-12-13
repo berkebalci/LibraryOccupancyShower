@@ -37,7 +37,7 @@ Future<List<String>> kutupaneDosyaYollariniListele() async {
   return dosyaYolari;
 }
 
-/*Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
+Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
   //Bölüm isimlerini Liste<String> şeklinde döndürüyor
   List<String> bolumler = [];
   try {
@@ -56,7 +56,7 @@ Future<List<String>> kutupaneDosyaYollariniListele() async {
     //birşeyler ters gitti uyarısı ver
   }
   return bolumler;
-}*/
+}
 
 Future<List<int>> doluKoltuklariListele(
     String kutuphaneDosyaYolu, String bolumismi, String fieldismi) async {

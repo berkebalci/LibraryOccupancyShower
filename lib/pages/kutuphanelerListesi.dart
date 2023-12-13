@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/global/global.dart';
+import 'package:flutter_application_1/services/firebaseIslemleri.dart';
 import 'dolulukOranlari.dart';
 
 class KutuphaneListesi extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,121 +12,128 @@ class KutuphaneListesi extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Container(
-          alignment: Alignment.topCenter,
-          child: CustomScrollView(
-            slivers: [
-              SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const Text(
-                        'Kütüphaneler Listesi',
-                        style: TextStyle(
-                          fontSize: 39,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF9D5B2B),
-                          shadows: [
-                            Shadow(
-                              color: Colors.grey,
-                              blurRadius: 2.0,
-                              offset: Offset(2.0, 2.0),
-                            ),
-                          ],
+      body: RefreshIndicator(
+        onRefresh:() async{
+           kutuphaneListesi$.value = await kutupaneDosyaYollariniListele();
+        }, 
+        child: Container(
+            alignment: Alignment.topCenter,
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Text(
+                          'Kütüphaneler Listesi',
+                          style: TextStyle(
+                            fontSize: 39,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF9D5B2B),
+                            shadows: [
+                              Shadow(
+                                color: Colors.grey,
+                                blurRadius: 2.0,
+                                offset: Offset(2.0, 2.0),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(12.0),
-                      ),
-                      const SizedBox(
-                        width: 360,
-                        height: 20,
-                        child: Divider(
-                          color: Colors.white,
-                          thickness: 7,
+                        const Padding(
+                          padding: EdgeInsets.all(12.0),
                         ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(20.0),
-                      ),
-
-                      SizedBox(
-                        height: 400,
-                        width: 400,
-                        child: ListView.builder(
-                          
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                SizedBox(
-                                  width: 350,
-                                  height: 60,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const Ikinci()));
-                                    },
-                                    child: Text(
-                                      '${kutuphaneListesi$.value[index]}',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 27,
-                                        fontWeight: FontWeight.bold,
+                        const SizedBox(
+                          width: 360,
+                          height: 20,
+                          child: Divider(
+                            color: Colors.white,
+                            thickness: 7,
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.all(20.0),
+                        ),
+        
+                        SizedBox(
+                          height: 400,
+                          width: 400,
+                          child: ListView.builder(
+                            
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  SizedBox(
+                                    width: 350,
+                                    height: 60,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+        
+                                        
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Ikinci()));
+                                      },
+                                      child: Text(
+                                        '${kutuphaneListesi$.value[index]}',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 27,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
                                       ),
                                     ),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                    ),
                                   ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.all(15.0),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: List.generate(
-                                      10,
-                                      (index) => Container(
-                                          width: 30,
-                                          height: 25,
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ))),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                )
-                              ],
-                            );
-                          },
-                          itemCount: 2,
+                                  const Padding(
+                                    padding: EdgeInsets.all(15.0),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: List.generate(
+                                        10,
+                                        (index) => Container(
+                                            width: 30,
+                                            height: 25,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ))),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  )
+                                ],
+                              );
+                            },
+                            itemCount: 2,
+                          ),
+                        )
+                        //Kütüphane Butonları başlangıç
+                        ,
+                        //Kütüphane Butonları Bölümü bitiş
+                        const Padding(
+                          padding: EdgeInsets.all(100.0),
                         ),
-                      )
-                      //Kütüphane Butonları başlangıç
-                      ,
-                      //Kütüphane Butonları Bölümü bitiş
-                      const Padding(
-                        padding: EdgeInsets.all(100.0),
-                      ),
-                      const Text('Erciyes Üniversitesi 2023',
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey)),
-                      const Padding(
-                        padding: EdgeInsets.all(10.0),
-                      ),
-                    ],
-                  ))
-            ],
-          )),
+                        const Text('Erciyes Üniversitesi 2023',
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey)),
+                        const Padding(
+                          padding: EdgeInsets.all(10.0),
+                        ),
+                      ],
+                    ))
+              ],
+            )),
+      ),
       backgroundColor: const Color(0xFFE9DCD0),
     );
   }
