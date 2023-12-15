@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Ikinci extends StatelessWidget {
-  const Ikinci({super.key});
-
+  String selectedLibrary; //talasKutuphanesi,erciyesKutuphanesi
+  Ikinci({super.key, required this.selectedLibrary});
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

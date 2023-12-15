@@ -42,8 +42,12 @@ class Anasayfa extends StatelessWidget {
               height: 116,
               child: ElevatedButton(
                 onPressed: () async {
-                   kutuphaneListesi$.value = await kutupaneDosyaYollariniListele();
-                            
+                  kutuphaneListesi$.value =
+                      await kutupaneDosyaYollariniListele();
+                  //bolumListesi$.value = await bolumleriListele("talasKutuphanesi"); //TODO: Bunun mantığını düşün
+                  
+                  await doluKoltuklariListele(
+                      "talasKutuphanesi", "sesliBolum",);
                   Navigator.push(
                       context,
                       MaterialPageRoute(

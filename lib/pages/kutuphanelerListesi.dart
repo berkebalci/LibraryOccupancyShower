@@ -3,8 +3,19 @@ import 'package:flutter_application_1/global/global.dart';
 import 'package:flutter_application_1/services/firebaseIslemleri.dart';
 import 'dolulukOranlari.dart';
 
-class KutuphaneListesi extends StatelessWidget {
-  
+class KutuphaneListesi extends StatefulWidget {
+  @override
+  State<KutuphaneListesi> createState() => _KutuphaneListesiState();
+}
+
+class _KutuphaneListesiState extends State<KutuphaneListesi> {
+  @override
+  void initState() {
+    
+    super.initState();
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,9 +24,9 @@ class KutuphaneListesi extends StatelessWidget {
         elevation: 0,
       ),
       body: RefreshIndicator(
-        onRefresh:() async{
-           kutuphaneListesi$.value = await kutupaneDosyaYollariniListele();
-        }, 
+        onRefresh: () async {
+          kutuphaneListesi$.value = await kutupaneDosyaYollariniListele();
+        },
         child: Container(
             alignment: Alignment.topCenter,
             child: CustomScrollView(
@@ -54,12 +65,11 @@ class KutuphaneListesi extends StatelessWidget {
                         const Padding(
                           padding: EdgeInsets.all(20.0),
                         ),
-        
+
                         SizedBox(
                           height: 400,
                           width: 400,
                           child: ListView.builder(
-                            
                             itemBuilder: (context, index) {
                               return Column(
                                 children: [
@@ -67,14 +77,16 @@ class KutuphaneListesi extends StatelessWidget {
                                     width: 350,
                                     height: 60,
                                     child: ElevatedButton(
-                                      onPressed: () {
-        
-                                        
+                                      onPressed: () async {
+                                       
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const Ikinci()));
+                                                builder: (context) => Ikinci(
+                                                      selectedLibrary:
+                                                          kutuphaneListesi$
+                                                              .value[index],
+                                                    )));
                                       },
                                       child: Text(
                                         '${kutuphaneListesi$.value[index]}',

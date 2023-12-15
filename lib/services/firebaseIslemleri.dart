@@ -58,9 +58,9 @@ Future<List<String>> bolumleriListele(String kutuphaneDosyaYolu) async {
   return bolumler;
 }
 
-Future<List<int>> doluKoltuklariListele(
-    String kutuphaneDosyaYolu, String bolumismi, String fieldismi) async {
-  //Seçilen kütüphanedeki doluluk parametresinin String değeri List<int> olarak dönüyor
+Future<Map?> doluKoltuklariListele(
+    String kutuphaneDosyaYolu, String bolumismi,) async {
+  //Seçilen kütüphanedeki doluluk parametresinin String değeri Map olarak dönüyor
 
   List<int> doluKoltuklar = [];
   try {
@@ -74,19 +74,20 @@ Future<List<int>> doluKoltuklariListele(
       print(snapshot.data().runtimeType); //Map<String,dynamic>
 
       print("If'den çıktı");
-      Map<String,dynamic>? data = snapshot.data(); //{"dolukoltuk":11,"bolumadi","kapasite":24}
-      if (data != null) {
-        int bolumunDoluKoldugu = int.parse(data[fieldismi].toString());
-        doluKoltuklar.add(bolumunDoluKoldugu);
+      Map<String, dynamic>? data =
+          snapshot.data(); //{"dolukoltuk":11,"bolumadi","kapasite":24}
+      return data;
       }
     }
-  } catch (e) {
+  catch (e) {
     //birşeyler ters gitti uyarısı ver
     throw Error;
   }
   print("Dolu koltuk fonksiyonu bitti");
-  return doluKoltuklar;
-}
+  
+  } 
+  
+
 
 /*Future<List<int>> kapasiteleriListele(String kutuphaneDosyaYolu) async {
   //Seçili kütüphanenin kapasitesini int şeklinde döndüren fonksiyon
@@ -131,14 +132,14 @@ Future<List<int>> doluKoltuklariListele(
   }
 }*/
 
-Future<List<String>> kutuphaneDoluKoltuklariListele() async {
+/*Future<List<String>> kutuphaneDoluKoltuklariListele() async {
   List<String> dosyaYollari = await kutupaneDosyaYollariniListele();
   List<String> kapasiteListesi = [];
   int toplam;
 
   for (int i = 0; i < dosyaYollari.length; i++) {
     List<int> bolumKapasiteListesi =
-        await doluKoltuklariListele(dosyaYollari[i], "sesliBolum","kapasite");
+        await doluKoltuklariListele(dosyaYollari[i], "sesliBolum", "kapasite");
     toplam = 0;
 
     for (int j = 0; j < bolumKapasiteListesi.length; j++) {
@@ -149,4 +150,4 @@ Future<List<String>> kutuphaneDoluKoltuklariListele() async {
   }
 
   return kapasiteListesi;
-}
+}*/
