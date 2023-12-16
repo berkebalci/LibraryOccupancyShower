@@ -48,7 +48,7 @@ Future<List<KutuphaneModel>> kutupaneModelOlustur() async {
 
 void bolumleriListele(KutuphaneModel kutuphanemodel) async {
   //Bölüm isimlerini Liste<String> şeklinde döndürüyor
-  
+
   try {
     QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
         .instance
@@ -62,12 +62,14 @@ void bolumleriListele(KutuphaneModel kutuphanemodel) async {
         print(doc
             .data()); //{"doluKoltuk":24,"bolumAdi":"AkademikKisim","kapasite":24}
         //String bolumAdi = doc.data()['bolumAdi'];
-        kutuphanemodel.bolumler.add(BolumModel.fromJson(doc.data()));
+
+        kutuphanemodel.bolumler.add(BolumModel.fromMap(doc.data()));
         print("bolumler listesine eklendi");
       }
     }
     print("for döngüsü bitti");
-    kutuphaneModelListesi$.value[0].bolumler;
+    kutuphanemodel.calculateRatio(); //Tüm Bölümlerin toplamını bulma
+    print(kutuphanemodel.toplamDolulukOrani);
   } catch (e) {
     //birşeyler ters gitti uyarısı ver
     throw Error();

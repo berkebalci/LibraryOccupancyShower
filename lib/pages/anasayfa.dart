@@ -48,12 +48,7 @@ class Anasayfa extends StatelessWidget {
                   kutuphaneModelListesi$.value =
                       await kutupaneModelOlustur(); //TODO: Burayı değiştirdim
                   for (int i =0; i< kutuphaneModelListesi$.value.length;i++) {
-                    bolumleriListele(kutuphaneModelListesi$.value[i]);
-                    /*for(FieldModel fieldmodel in kutuphaneModelListesi$.value[i].bolumler[i].fieldListesi){
-                      
-                    }*/
-                    
-                  }
+                    bolumleriListele(kutuphaneModelListesi$.value[i]);}
                   
                   Navigator.push(
                       context,
