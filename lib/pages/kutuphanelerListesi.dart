@@ -11,10 +11,10 @@ class KutuphaneListesi extends StatefulWidget {
 class _KutuphaneListesiState extends State<KutuphaneListesi> {
   @override
   void initState() {
-    
     super.initState();
-    
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          kutuphaneListesi$.value = await kutupaneDosyaYollariniListele();
+          //kutuphaneListesi$.value = await kutupaneDosyaYollariniListele();
         },
         child: Container(
             alignment: Alignment.topCenter,
@@ -65,7 +65,7 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                         const Padding(
                           padding: EdgeInsets.all(20.0),
                         ),
-
+        
                         SizedBox(
                           height: 400,
                           width: 400,
@@ -73,20 +73,23 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                             itemBuilder: (context, index) {
                               return Column(
                                 children: [
-                                  SizedBox(
+                                  /*SizedBox(
                                     width: 350,
                                     height: 60,
                                     child: ElevatedButton(
                                       onPressed: () async {
-                                       
-                                        Navigator.push(
+                                        Navigator.push( //TODO: Burası değiştirilecek
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => Ikinci(
+                                                builder: (context) =>
+                                                    Ikinci(
                                                       selectedLibrary:
                                                           kutuphaneListesi$
-                                                              .value[index],
-                                                    )));
+                                                                  .value[
+                                                              index],
+                                                    ))
+                                                    
+                                                    );
                                       },
                                       child: Text(
                                         '${kutuphaneListesi$.value[index]}',
@@ -100,7 +103,7 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                         backgroundColor: Colors.white,
                                       ),
                                     ),
-                                  ),
+                                  ),*/
                                   const Padding(
                                     padding: EdgeInsets.all(15.0),
                                   ),
@@ -115,7 +118,8 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                             decoration: BoxDecoration(
                                               color: Colors.grey,
                                               borderRadius:
-                                                  BorderRadius.circular(5),
+                                                  BorderRadius.circular(
+                                                      5),
                                             ))),
                                   ),
                                   SizedBox(

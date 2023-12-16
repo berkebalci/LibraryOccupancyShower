@@ -1,33 +1,18 @@
-import 'dart:convert';
-
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter_application_1/model/bolumModel.dart';
+
 class KutuphaneModel {
-  String bolumadi;
-  int dolukoltuk;
-  int kapasite;
+  String kutuphaneAdi;
+  List<BolumModel> bolumler;
+
   KutuphaneModel({
-    required this.bolumadi,
-    required this.dolukoltuk,
-    required this.kapasite,
+    required this.kutuphaneAdi,
+    required this.bolumler,
   });
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'bolumadi': bolumadi,
-      'dolukoltuk': dolukoltuk,
-      'kapasite': kapasite,
-    };
+ 
+
+  factory KutuphaneModel.fromJson(Map<String, dynamic> json) {
+    return KutuphaneModel(kutuphaneAdi: json['kutuphaneAdi'], bolumler: []);
   }
-
-  factory KutuphaneModel.fromMap(Map<String, dynamic> map) {
-    return KutuphaneModel(
-      bolumadi: map['bolumadi'] as String,
-      dolukoltuk: map['dolukoltuk'] as int,
-      kapasite: map['kapasite'] as int,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory KutuphaneModel.fromJson(String source) => KutuphaneModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
