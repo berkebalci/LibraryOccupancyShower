@@ -4,7 +4,7 @@ import 'package:flutter_application_1/model/kutuphaneModel.dart';
 class Ikinci extends StatelessWidget {
   KutuphaneModel selectedLibrary; //talasKutuphanesi,erciyesKutuphanesi
   Ikinci({super.key, required this.selectedLibrary});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

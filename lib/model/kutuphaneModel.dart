@@ -4,15 +4,16 @@ import 'package:flutter_application_1/model/bolumModel.dart';
 class KutuphaneModel {
   String kutuphaneAdi;
   List<BolumModel> bolumler;
+  int toplamDolulukOrani;
 
   KutuphaneModel({
     required this.kutuphaneAdi,
     required this.bolumler,
+    required this.toplamDolulukOrani
   });
 
- 
-
   factory KutuphaneModel.create(String KutuphaneAdi) {
-    return KutuphaneModel(kutuphaneAdi: KutuphaneAdi, bolumler: []);
+    return KutuphaneModel(kutuphaneAdi: KutuphaneAdi, bolumler: [],
+    toplamDolulukOrani: 0);
   }
 }

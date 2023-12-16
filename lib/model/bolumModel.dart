@@ -1,19 +1,18 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter_application_1/model/FieldModel.dart';
-
 class BolumModel {
-  List<FieldModel> fieldListesi;
+  String bolumAdi;
+  int doluKoltuk;
+  int kapasite;
 
   BolumModel({
-    required this.fieldListesi,
+    required this.bolumAdi,
+    required this.doluKoltuk,
+    required this.kapasite,
   });
-
- 
-
-  factory BolumModel.fromJson(Map<String, dynamic> map) {
+  factory BolumModel.fromJson(Map<String, dynamic> json) {
     return BolumModel(
-      fieldListesi: [
-        FieldModel.fromJson(map)]
+      bolumAdi: json['bolumAdi'],
+      doluKoltuk: json['doluKoltuk'],
+      kapasite: json['kapasite'],
     );
   }
 }

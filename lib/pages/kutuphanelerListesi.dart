@@ -12,6 +12,7 @@ class KutuphaneListesi extends StatefulWidget {
 class _KutuphaneListesiState extends State<KutuphaneListesi> {
   @override
   void initState() {
+    
     super.initState();
   }
 
@@ -31,8 +32,9 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
           }
         },
         child: StreamBuilder<List<KutuphaneModel>>(
-            stream: kutuphaneModelListesi$.stream, 
-            builder: (context, snapshot) { //snapshot.data = [KutuphaneModel, KutuphaneModel]
+            stream: kutuphaneModelListesi$.stream,
+            builder: (context, snapshot) {
+              //snapshot.data = [KutuphaneModel, KutuphaneModel]
               if (snapshot.hasData) {
                 return Container(
                     alignment: Alignment.topCenter,
