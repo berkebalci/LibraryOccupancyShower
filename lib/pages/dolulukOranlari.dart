@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/model/kutuphaneModel.dart';
 
 class Ikinci extends StatelessWidget {
-  String selectedLibrary; //talasKutuphanesi,erciyesKutuphanesi
+  KutuphaneModel selectedLibrary; //talasKutuphanesi,erciyesKutuphanesi
   Ikinci({super.key, required this.selectedLibrary});
   
   @override

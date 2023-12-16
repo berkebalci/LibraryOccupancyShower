@@ -66,7 +66,7 @@ void bolumleriListele(KutuphaneModel kutuphanemodel) async {
       }
     }
     print("for döngüsü bitti");
-    kutuphaneModelListesi$.value[0].bolumler[0].fieldListesi;
+    //kutuphaneModelListesi$.value[0].bolumler[0].fieldListesi;
     
   } catch (e) {
     //birşeyler ters gitti uyarısı ver
@@ -74,7 +74,7 @@ void bolumleriListele(KutuphaneModel kutuphanemodel) async {
   }
 }
 
-Future<Map?> doluKoltuklariListele(
+/*Future<Map?> doluKoltuklariListele(
   KutuphaneModel kutuphaneModel,
   String bolumismi,
 ) async {
@@ -103,7 +103,7 @@ Future<Map?> doluKoltuklariListele(
     throw Error;
   }
   print("Dolu koltuk fonksiyonu bitti");
-} 
+} */
   
 
 
