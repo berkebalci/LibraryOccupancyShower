@@ -12,7 +12,7 @@ class KutuphaneModel {
 
  
 
-  factory KutuphaneModel.fromJson(Map<String, dynamic> json) {
-    return KutuphaneModel(kutuphaneAdi: json['kutuphaneAdi'], bolumler: []);
+  factory KutuphaneModel.create(String KutuphaneAdi) {
+    return KutuphaneModel(kutuphaneAdi: KutuphaneAdi, bolumler: []);
   }
 }

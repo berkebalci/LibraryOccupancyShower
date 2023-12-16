@@ -10,9 +10,10 @@ class BolumModel {
 
  
 
-  factory BolumModel.fromJson(Map<String, dynamic> json) {
+  factory BolumModel.fromJson(Map<String, dynamic> map) {
     return BolumModel(
-      fieldListesi: []
+      fieldListesi: [
+        FieldModel.fromJson(map)]
     );
   }
 }

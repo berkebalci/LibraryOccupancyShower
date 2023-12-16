@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/global/global.dart';
+import 'package:flutter_application_1/model/kutuphaneModel.dart';
 import 'package:flutter_application_1/services/firebaseIslemleri.dart';
 import 'ayarlar.dart';
 import 'hakkinda.dart';
@@ -43,9 +44,10 @@ class Anasayfa extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () async {
                   print("onpressed çalıştı");
-                  kutuphaneModelListesi$.value =
-                      await kutupaneModelOlustur(); //TODO: Burayı değiştirdim
-                  // await bolumleriListele("talasKutuphanesi");
+                  kutuphaneModelListesi$.value = await kutupaneModelOlustur(); //TODO: Burayı değiştirdim
+                  for (KutuphaneModel x in kutuphaneModelListesi$.value) {
+                     bolumleriListele(x);
+                  }
                   print("kütüphaneModelOlustur metodu çalıştı");
                   print(kutuphaneModelListesi$.value[0].bolumler.length);
                   Navigator.push(

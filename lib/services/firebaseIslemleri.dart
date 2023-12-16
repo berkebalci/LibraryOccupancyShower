@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/global/global.dart';
 import 'package:flutter_application_1/model/FieldModel.dart';
+import 'package:flutter_application_1/model/bolumModel.dart';
 import 'package:flutter_application_1/model/kutuphaneModel.dart';
 
 /*Future<List<String>> kutuphaneleriListele() async {
@@ -34,10 +35,9 @@ Future<List<KutuphaneModel>> kutupaneModelOlustur() async {
     print("instance olustu");
     for (QueryDocumentSnapshot<Map<String, dynamic>> doc in snapshot.docs) {
       print("sj");
-      dosyaYolari.add(KutuphaneModel.fromJson(
-          doc.data())); //{kutuphaneAdi:Erciyes,kutuphanesi}
+      dosyaYolari.add(KutuphaneModel.create(doc.id)); //{kutuphaneAdi:Erciyes,kutuphanesi}
     }
-    //print(kutuphaneModelListesi.value[0]);
+  
     return dosyaYolari;
   } catch (e) {
     //birşeyler ters gitti uyarısı ver
@@ -45,7 +45,7 @@ Future<List<KutuphaneModel>> kutupaneModelOlustur() async {
   }
 }
 
-Future<List<String>> bolumleriListele(KutuphaneModel kutuphanemodel) async {
+void bolumleriListele(KutuphaneModel kutuphanemodel) async {
   //Bölüm isimlerini Liste<String> şeklinde döndürüyor
   List<String> bolumler = [];
   try {
@@ -55,31 +55,38 @@ Future<List<String>> bolumleriListele(KutuphaneModel kutuphanemodel) async {
             '/kutuphaneler/' + kutuphanemodel.kutuphaneAdi + '/bolumler')
         .get();
 
+    print("snapshot.docs === ${snapshot.docs}");
     for (QueryDocumentSnapshot<Map<String, dynamic>> doc in snapshot.docs) {
       {
-        print(doc
-            .data()); //{"doluKoltuk":24,"bolumAdi":"AkademikKisim","kapasite":24}
+        print(doc.data()); //{"doluKoltuk":24,"bolumAdi":"AkademikKisim","kapasite":24}
         //String bolumAdi = doc.data()['bolumAdi'];
-        kutuphanemodel.bolumler;
+        
+        kutuphanemodel.bolumler.add(BolumModel.fromJson(doc.data()));
+        print("bolumler listesine eklendi");
       }
     }
+    print("for döngüsü bitti");
+    kutuphaneModelListesi$.value[0].bolumler[0].fieldListesi;
+    
   } catch (e) {
     //birşeyler ters gitti uyarısı ver
+    throw Error();
   }
-  return bolumler;
 }
 
 Future<Map?> doluKoltuklariListele(
-  String kutuphaneDosyaYolu,
+  KutuphaneModel kutuphaneModel,
   String bolumismi,
 ) async {
   //Seçilen kütüphanedeki doluluk parametresinin String değeri Map olarak dönüyor
 
-  List<int> doluKoltuklar = [];
+  //List<String> kutuphaneninBolumleri = await bolumleriListele(kutuphanemodel);
+  ;
   try {
     DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
         .instance
-        .collection('/kutuphaneler/' + kutuphaneDosyaYolu + '/bolumler')
+        .collection(
+            '/kutuphaneler/' + kutuphaneModel.kutuphaneAdi + '/bolumler')
         .doc("$bolumismi")
         .get();
     if (snapshot.data() != null) {
