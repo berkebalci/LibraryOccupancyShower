@@ -145,45 +145,51 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                           const Padding(
                                             padding: EdgeInsets.all(15.0),
                                           ),
-                                          Row(
-                                           mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: List.generate(
-                                                    calculateRatio(
-                                                        kutuphaneModelListesi$
-                                                            .value[index].toplamDolulukOrani),
-                                                    (index) => Container(
-                                                      width: 30,
-                                                        height: 25,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: paintRowContainers(index),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                        )),
+                                         Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: List.generate(
+                                                    calculateRatio(kutuphaneModelListesi$.value[index].toplamDolulukOrani),
+                                                    (index) => Row(
+                                                      children: [
+                                                        Container(
+                                                          width: 30,
+                                                          height: 25,
+                                                          decoration: BoxDecoration(
+                                                            color: paintRowContainers(index),
+                                                            borderRadius: BorderRadius.circular(5),
+                                                          ),
                                                         ),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: List.generate(
-                                                    8 -
-                                                        calculateRatio(kutuphaneModelListesi$.value[index].toplamDolulukOrani),
-                                                    (index) => Container(
-                                                        width: 30,
-                                                        height: 25,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.grey,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                        ))),
-                                              )
-                                            ],
-                                          ),
+                                                        SizedBox(width: 10), 
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: List.generate(
+                                                    8 - calculateRatio(kutuphaneModelListesi$.value[index].toplamDolulukOrani),
+                                                    (index) => Row(
+                                                      children: [
+                                                        Container(
+                                                          width: 30,
+                                                          height: 25,
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.grey,
+                                                            borderRadius: BorderRadius.circular(5),
+                                                          ),
+                                                        ),
+                                                        SizedBox(width: 10), // Add space
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+
+                                          ,
                                           SizedBox(
                                             height: 20,
                                           )
