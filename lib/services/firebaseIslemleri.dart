@@ -38,7 +38,6 @@ Future<List<KutuphaneModel>> kutupaneModelOlustur() async {
       dosyaYolari.add(
           KutuphaneModel.create(doc.id)); //{kutuphaneAdi:Erciyes,kutuphanesi}
     }
-
     return dosyaYolari;
   } catch (e) {
     //birşeyler ters gitti uyarısı ver
@@ -68,7 +67,7 @@ void bolumleriListele(KutuphaneModel kutuphanemodel) async {
       }
     }
     print("for döngüsü bitti");
-    kutuphanemodel.calculateRatio(); //Tüm Bölümlerin toplamını bulma
+    kutuphanemodel.calculateTotalOccupancy(); //Tüm Bölümlerin toplamını bulma
     print(kutuphanemodel.toplamDolulukOrani);
   } catch (e) {
     //birşeyler ters gitti uyarısı ver

@@ -9,10 +9,40 @@ class KutuphaneListesi extends StatefulWidget {
   State<KutuphaneListesi> createState() => _KutuphaneListesiState();
 }
 
+Color paintRowContainers(int index) {
+  if (index < 2) {
+    return Colors.green;
+  } else if (index >= 2 && index < 4) {
+    return Colors.yellow;
+  } else if (index >= 4 && index < 6) {
+    return Colors.orange;
+  } else if (index >= 6 && index < 8) {
+    return Colors.red;
+  } else {
+    return Colors.grey;
+  }
+}
+
+int calculateRatio(double kutuphaneToplamDolulukOrani) {
+  if (kutuphaneToplamDolulukOrani <= 0.3) {
+    return 2;
+  } else if (kutuphaneToplamDolulukOrani > 0.3 &&
+      kutuphaneToplamDolulukOrani <= 0.6) {
+    return 4;
+  } else if (kutuphaneToplamDolulukOrani > 0.6 &&
+      kutuphaneToplamDolulukOrani <= 0.9) {
+    return 6;
+  } else if (kutuphaneToplamDolulukOrani > 0.9 &&
+      kutuphaneToplamDolulukOrani <= 1) {
+    return 8;
+  } else {
+    return 0;
+  }
+}
+
 class _KutuphaneListesiState extends State<KutuphaneListesi> {
   @override
   void initState() {
-    
     super.initState();
   }
 
@@ -36,6 +66,7 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
             builder: (context, snapshot) {
               //snapshot.data = [KutuphaneModel, KutuphaneModel]
               if (snapshot.hasData) {
+                List<KutuphaneModel> kutuphaneModelListesi = snapshot.data!;
                 return Container(
                     alignment: Alignment.topCenter,
                     child: CustomScrollView(
@@ -94,13 +125,12 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                                         builder: (context) =>
                                                             Ikinci(
                                                               selectedLibrary:
-                                                                  kutuphaneModelListesi$
-                                                                          .value[
+                                                                  kutuphaneModelListesi[
                                                                       index],
                                                             )));
                                               },
                                               child: Text(
-                                                '${kutuphaneModelListesi$.value[index].kutuphaneAdi}',
+                                                '${kutuphaneModelListesi[index].kutuphaneAdi}',
                                                 style: TextStyle(
                                                   color: Colors.grey,
                                                   fontSize: 27,
@@ -116,19 +146,43 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                             padding: EdgeInsets.all(15.0),
                                           ),
                                           Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: List.generate(
-                                                10,
-                                                (index) => Container(
-                                                    width: 30,
-                                                    height: 25,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.grey,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                    ))),
+                                           mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: List.generate(
+                                                    calculateRatio(
+                                                        kutuphaneModelListesi$
+                                                            .value[index].toplamDolulukOrani),
+                                                    (index) => Container(
+                                                      width: 30,
+                                                        height: 25,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: paintRowContainers(index),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        )),
+                                                        ),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: List.generate(
+                                                    8 -
+                                                        calculateRatio(kutuphaneModelListesi$.value[index].toplamDolulukOrani),
+                                                    (index) => Container(
+                                                        width: 30,
+                                                        height: 25,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.grey,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        ))),
+                                              )
+                                            ],
                                           ),
                                           SizedBox(
                                             height: 20,

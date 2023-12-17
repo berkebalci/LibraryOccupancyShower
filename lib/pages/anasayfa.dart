@@ -45,6 +45,7 @@ class Anasayfa extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () async {
                   print("onpressed çalıştı");
+                  
                   kutuphaneModelListesi$.value =
                       await kutupaneModelOlustur(); //TODO: Burayı değiştirdim
                   for (int i =0; i< kutuphaneModelListesi$.value.length;i++) {
