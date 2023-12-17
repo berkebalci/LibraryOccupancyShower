@@ -46,22 +46,35 @@ class Anasayfa extends StatelessWidget {
                 onPressed: () async {
                   print("onpressed çalıştı");
 
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: new CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      );
+                    },
+                  );
                   kutuphaneModelListesi$.value =
                       await kutupaneModelOlustur(); //TODO: Burayı değiştirdim
                   print(
                       "toplamdolulukoranı : ${kutuphaneModelListesi$.value[1].toplamDolulukOrani})");
                   ;
+
                   for (int i = 0;
                       i < kutuphaneModelListesi$.value.length;
                       i++) {
                     await bolumleriListele(kutuphaneModelListesi$.value[i]);
-                    
                   }
-
+                  Navigator.of(context, rootNavigator: true).pop();
                   Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => KutuphaneListesi()));
+                      MaterialPageRoute(builder: (context) => KutuphaneListesi()),
+  );
+                
+                
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 157, 91, 43),
