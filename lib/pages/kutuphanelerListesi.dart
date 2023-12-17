@@ -223,7 +223,7 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                         ],
                                       );
                                     },
-                                    itemCount: 2,
+                                    itemCount: kutuphaneModelListesi.length,
                                   ),
                                 )
                                 //Kütüphane Butonları başlangıç

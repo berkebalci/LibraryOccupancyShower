@@ -36,7 +36,7 @@ class Anasayfa extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+           Positioned(
             top: MediaQuery.of(context).size.height / 2 - 140,
             left: MediaQuery.of(context).size.width / 4 - 50,
             child: SizedBox(
@@ -53,6 +53,7 @@ class Anasayfa extends StatelessWidget {
                       return Center(
                         child: new CircularProgressIndicator(
                           color: Colors.white,
+
                         ),
                       );
                     },
