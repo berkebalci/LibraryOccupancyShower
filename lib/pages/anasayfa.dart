@@ -59,7 +59,7 @@ class Anasayfa extends StatelessWidget {
                     },
                   );
                   kutuphaneModelListesi$.value =
-                      await kutupaneModelOlustur(); //TODO: Burayı değiştirdim
+                      await kutupaneModelOlustur(); 
                   print(
                       "toplamdolulukoranı : ${kutuphaneModelListesi$.value[1].toplamDolulukOrani})");
                   ;

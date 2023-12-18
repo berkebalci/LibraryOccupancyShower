@@ -136,7 +136,7 @@ Future<void> bolumleriListele(KutuphaneModel kutuphanemodel) async {
       List<int> bolumKapasiteListesi =
           await kapasiteleriListele(dosyaYollari[i]);
       toplam = 0;
-//TODO: Buradaki mantığı anla ve içiçe for döngüsünü kaldır
+
       for (int j = 0; j < bolumKapasiteListesi.length; j++) {
         toplam = toplam + bolumKapasiteListesi[j];
       }

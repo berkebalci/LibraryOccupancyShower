@@ -6,37 +6,36 @@ class Ikinci extends StatelessWidget {
   Ikinci({super.key, required this.selectedLibrary});
 
   Color paintRowContainers(int index) {
-  if (index < 2) {
-    return Colors.green;
-  } else if (index >= 2 && index < 4) {
-    return Colors.yellow;
-  } else if (index >= 4 && index < 6) {
-    return Colors.orange;
-  } else if (index >= 6 && index < 8) {
-    return Colors.red;
-  } else {
-    return Colors.grey;
+    if (index < 2) {
+      return Colors.green;
+    } else if (index >= 2 && index < 4) {
+      return Colors.yellow;
+    } else if (index >= 4 && index < 6) {
+      return Colors.orange;
+    } else if (index >= 6 && index < 8) {
+      return Colors.red;
+    } else {
+      return Colors.grey;
+    }
   }
-}
 
-int calculateRatio(double kutuphaneToplamDolulukOrani) {
-  if (kutuphaneToplamDolulukOrani <= 0.3) {
-    return 2;
-  } else if (kutuphaneToplamDolulukOrani > 0.3 &&
-      kutuphaneToplamDolulukOrani <= 0.6) {
-    return 4;
-  } else if (kutuphaneToplamDolulukOrani > 0.6 &&
-      kutuphaneToplamDolulukOrani <= 0.9) {
-    return 6;
-  } else if (kutuphaneToplamDolulukOrani > 0.9 &&
-      kutuphaneToplamDolulukOrani <= 1) {
-    return 8;
-  } else {
-    return 0;
+  int calculateRatio(double kutuphaneToplamDolulukOrani) {
+    if (kutuphaneToplamDolulukOrani <= 0.3) {
+      return 2;
+    } else if (kutuphaneToplamDolulukOrani > 0.3 &&
+        kutuphaneToplamDolulukOrani <= 0.6) {
+      return 4;
+    } else if (kutuphaneToplamDolulukOrani > 0.6 &&
+        kutuphaneToplamDolulukOrani <= 0.9) {
+      return 6;
+    } else if (kutuphaneToplamDolulukOrani > 0.9 &&
+        kutuphaneToplamDolulukOrani <= 1) {
+      return 8;
+    } else {
+      return 0;
+    }
   }
-}
-  
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,108 +85,97 @@ int calculateRatio(double kutuphaneToplamDolulukOrani) {
                 const Padding(
                   padding: EdgeInsets.all(10.0),
                 ),
-                
-               SizedBox(
-                                  height: 400,
-                                  width: 400,
-                                  child: ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: selectedLibrary.bolumler.length,
-                                    itemBuilder: (context, index) {
-                                      return Column(
-                                        children: [
-                                          SizedBox(
-                                            width: 350,
-                                            height: 60,
-                                            child: ElevatedButton(
-                                              onPressed: (){},
-                                              child: Text(
-                                                '${selectedLibrary.bolumler[index].bolumAdi} ',
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 27,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                          const Padding(
-                                            padding: EdgeInsets.all(15.0),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: List.generate(
-                                                  calculateRatio(
-                                                      selectedLibrary.bolumler[index]
-                                                          .DolulukOrani),
-                                                  (index) => Row(
-                                                    children: [
-                                                      Container(
-                                                        width: 30,
-                                                        height: 25,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              paintRowContainers(
-                                                                  index),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: 10),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: List.generate(
-                                                  8 -
-                                                      calculateRatio(
-                                                         selectedLibrary.toplamDolulukOrani),
-                                                  (index) => Row(
-                                                    children: [
-                                                      Container(
-                                                        width: 30,
-                                                        height: 25,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.grey,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                          width:
-                                                              10), // Add space
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 20,
-                                          )
-                                        ],
-                                      );
-                                    },
-                                    
+                SizedBox(
+                  height: 400,
+                  width: 400,
+                  child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: selectedLibrary.bolumler.length,
+                    itemBuilder: (context, index) {
+                      
+                      return Column(
+                        children: [
+                          SizedBox(
+                            width: 350,
+                            height: 60,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                print(selectedLibrary.bolumler[index].DolulukOrani);
+                              },
+                              child: Text(
+                                '${selectedLibrary.bolumler[index].bolumAdi} ',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 27,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(15.0),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: List.generate(
+                                  calculateRatio(selectedLibrary
+                                      .bolumler[index].DolulukOrani),
+                                  (index) => Row(
+                                    children: [
+                                      Container(
+                                        width: 30,
+                                        height: 25,
+                                        decoration: BoxDecoration(
+                                          color: paintRowContainers(index),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                    ],
                                   ),
                                 ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: List.generate(
+                                  8 -
+                                      calculateRatio(
+                                          selectedLibrary.bolumler[index].DolulukOrani),
+                                  (index) => Row(
+                                    children: [
+                                      Container(
+                                        width: 30,
+                                        height: 25,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10), // Add space
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          )
+                        ],
+                      );
+                    },
+                  ),
+                ),
                 const Padding(
                   padding: EdgeInsets.all(20.0),
                 ),

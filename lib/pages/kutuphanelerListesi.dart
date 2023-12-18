@@ -126,8 +126,7 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                             child: ElevatedButton(
                                               onPressed: () async {
                                                 Navigator.push(
-                                                    //TODO: Burası değiştirilecek
-                                                    context,
+                                                                                                        context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             Ikinci(
