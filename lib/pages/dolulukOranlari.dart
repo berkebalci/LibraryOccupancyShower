@@ -56,8 +56,8 @@ class Ikinci extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.all(13.0),
                 ),
-                const Text(
-                  'Talas 7/24 Kütüphane',
+                 Text(
+                  selectedLibrary.kutuphaneAdi,
                   style: TextStyle(
                     fontSize: 33,
                     fontWeight: FontWeight.bold,
