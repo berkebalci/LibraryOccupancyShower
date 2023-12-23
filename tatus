@@ -1,0 +1,29 @@
+[33mcommit 81e8a954f5b9709f4a9107a77abb7d9508e12641[m[33m ([m[1;36mHEAD -> [m[1;32mFirebase[m[33m, [m[1;31morigin/Firebase[m[33m)[m
+Author: Yusuf Enes Özkan <celettin.06@gmail.com>
+Date:   Sat Dec 9 13:55:39 2023 +0300
+
+    firebase ile ilgili bütün fonksyonlar yazıldı
+
+[33mcommit e002ae7d95355f671aeb56883ddd3398fa0f96e8[m
+Author: Yusuf Enes Özkan <celettin.06@gmail.com>
+Date:   Sat Dec 9 13:41:51 2023 +0300
+
+    firebase ile ilgili bütün fonksyonlar yazıldı
+
+[33mcommit 9ec4be6a384db91a0d8f191bd2dd1c8c9623dfef[m
+Author: Yusuf Enes Özkan <celettin.06@gmail.com>
+Date:   Fri Dec 1 16:36:40 2023 +0300
+
+    Firebase baglantisi saglandi ve baslatildi
+
+[33mcommit fd80bbc9633e9c9cfc00c1215b570c27da155189[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Şeyma Gizem Sivri <104505014+seymagizem@users.noreply.github.com>
+Date:   Sat Nov 4 00:19:39 2023 +0300
+
+    Update Ayarlar.dart
+
+[33mcommit 32bd76b4de2d7da9f8ed6a2f14e3a0edc3115c54[m
+Author: GizemSivri <sivriseymagizem@gmail.com>
+Date:   Fri Nov 3 20:32:30 2023 +0300
+
+    Anasayfa tasarımı tamamlandı, düzenlemeler yapılacak
