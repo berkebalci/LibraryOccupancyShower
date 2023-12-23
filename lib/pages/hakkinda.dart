@@ -32,23 +32,25 @@ class Hakkinda extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height / 2 - 400,
+            top: MediaQuery.of(context).size.height / 2 - 370,
             left: MediaQuery.of(context).size.width / 34,
-            child: const Text(
-              "Uygulama Hakkında",
-              style: TextStyle(
-                shadows: [
-                  Shadow(
-                    color: Colors.grey,
-                    blurRadius: 2.0,
-                    offset: Offset(2.0, 2.0),
-                  ),
-                ],
-                fontSize: 41,
-                fontWeight: FontWeight.w700,
-                fontStyle: FontStyle.normal,
-                color: Color.fromARGB(255, 157, 91, 43),
-                fontFamily: 'RobotoMono',
+            child: const Expanded(
+              child: Text(
+                "Uygulama Hakkında",
+                style: TextStyle(
+                  shadows: [
+                    Shadow(
+                      color: Colors.grey,
+                      blurRadius: 2.0,
+                      offset: Offset(2.0, 2.0),
+                    ),
+                  ],
+                  fontSize: 35,
+                  fontWeight: FontWeight.w700,
+                  fontStyle: FontStyle.normal,
+                  color: Color.fromARGB(255, 157, 91, 43),
+                  fontFamily: 'RobotoMono',
+                ),
               ),
             ),
           ),
