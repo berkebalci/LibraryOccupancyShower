@@ -36,7 +36,7 @@ class Anasayfa extends StatelessWidget {
               ),
             ),
           ),
-           Positioned(
+          Positioned(
             top: MediaQuery.of(context).size.height / 2 - 140,
             left: MediaQuery.of(context).size.width / 4 - 50,
             child: SizedBox(
@@ -53,13 +53,11 @@ class Anasayfa extends StatelessWidget {
                       return Center(
                         child: new CircularProgressIndicator(
                           color: Colors.white,
-
                         ),
                       );
                     },
                   );
-                  kutuphaneModelListesi$.value =
-                      await kutupaneModelOlustur(); 
+                  kutuphaneModelListesi$.value = await kutupaneModelOlustur();
                   print(
                       "toplamdolulukoranı : ${kutuphaneModelListesi$.value[1].toplamDolulukOrani})");
                   ;
@@ -67,15 +65,13 @@ class Anasayfa extends StatelessWidget {
                   for (int i = 0;
                       i < kutuphaneModelListesi$.value.length;
                       i++) {
-                    await bolumleriListele(kutuphaneModelListesi$.value[i]);
+                    await bolumModelOlustur(kutuphaneModelListesi$.value[i]);
                   }
                   Navigator.of(context, rootNavigator: true).pop();
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => KutuphaneListesi()),
-  );
-                
-                
+                    context,
+                    MaterialPageRoute(builder: (context) => KutuphaneListesi()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 157, 91, 43),

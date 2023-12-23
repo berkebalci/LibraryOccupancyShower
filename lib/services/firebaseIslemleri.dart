@@ -45,7 +45,7 @@ Future<List<KutuphaneModel>> kutupaneModelOlustur() async {
   }
 }
 
-Future<void> bolumleriListele(KutuphaneModel kutuphanemodel) async {
+Future<void> bolumModelOlustur(KutuphaneModel kutuphanemodel) async {
   //Bölüm isimlerini Liste<String> şeklinde döndürüyor
 
   try {

@@ -65,7 +65,7 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
           kutuphaneModelListesi$.value = [];
           await kutupaneModelOlustur();
           for (KutuphaneModel x in kutuphaneModelListesi$.value) {
-            bolumleriListele(x);
+            bolumModelOlustur(x);
           }
         },
         child: StreamBuilder<List<KutuphaneModel>>(
@@ -126,7 +126,7 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                             child: ElevatedButton(
                                               onPressed: () async {
                                                 Navigator.push(
-                                                                                                        context,
+                                                    context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             Ikinci(
