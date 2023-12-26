@@ -39,6 +39,23 @@ int calculateRatio(double kutuphaneToplamDolulukOrani) {
     return 0;
   }
 }
+String formatLibraryName(String name) {
+  // Find the index of 'K' in the string
+  int index = name.indexOf('K');
+
+  // Split the string into two parts: the name and "Kutuphanesi"
+  String firstPart = name.substring(0, index);
+  String secondPart = name.substring(index);
+
+  // Capitalize the first letter of the name and make the rest lowercase
+  firstPart = firstPart[0].toUpperCase() + firstPart.substring(1).toLowerCase();
+
+  // Join the two parts with a space in between
+  String formattedName = firstPart + ' ' + secondPart;
+
+  return formattedName;
+}
+
 
 class _KutuphaneListesiState extends State<KutuphaneListesi> {
   @override
@@ -136,7 +153,7 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                                             )));
                                               },
                                               child: Text(
-                                                '${kutuphaneModelListesi[index].kutuphaneAdi}',
+                                                formatLibraryName(kutuphaneModelListesi[index].kutuphaneAdi),
                                                 style: TextStyle(
                                                   color: Colors.grey,
                                                   fontSize: 27,
@@ -150,6 +167,17 @@ class _KutuphaneListesiState extends State<KutuphaneListesi> {
                                           ),
                                           const Padding(
                                             padding: EdgeInsets.all(15.0),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 20.0,
+                                                right: 20.0), 
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween
+                                              ,children: [
+                                              Text("En az dolu",style: TextStyle(fontWeight: FontWeight.bold),),
+                                              Text("En fazla dolu",style: TextStyle(fontWeight: FontWeight.bold),)
+                                            ],),
                                           ),
                                           Row(
                                             mainAxisAlignment:

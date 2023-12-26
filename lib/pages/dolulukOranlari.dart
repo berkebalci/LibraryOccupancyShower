@@ -118,6 +118,17 @@ class Ikinci extends StatelessWidget {
                           const Padding(
                             padding: EdgeInsets.all(15.0),
                           ),
+                          Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20.0,
+                                  right: 20.0), 
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween
+                                ,children: [
+                                Text("En az dolu",style: TextStyle(fontWeight: FontWeight.bold),),
+                                Text("En fazla dolu",style: TextStyle(fontWeight: FontWeight.bold),)
+                              ],),
+                                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
