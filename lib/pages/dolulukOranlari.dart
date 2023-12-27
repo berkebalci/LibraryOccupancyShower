@@ -56,7 +56,7 @@ class Ikinci extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.all(13.0),
                 ),
-                 Text(
+                Text(
                   selectedLibrary.kutuphaneAdi,
                   style: TextStyle(
                     fontSize: 33,
@@ -86,13 +86,13 @@ class Ikinci extends StatelessWidget {
                   padding: EdgeInsets.all(10.0),
                 ),
                 SizedBox(
-                  height: 400,
+                  height: 480,
                   width: 400,
                   child: ListView.builder(
+                    shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: selectedLibrary.bolumler.length,
                     itemBuilder: (context, index) {
-                      
                       return Column(
                         children: [
                           SizedBox(
@@ -100,7 +100,8 @@ class Ikinci extends StatelessWidget {
                             height: 60,
                             child: ElevatedButton(
                               onPressed: () {
-                                print(selectedLibrary.bolumler[index].DolulukOrani);
+                                print(selectedLibrary
+                                    .bolumler[index].DolulukOrani);
                               },
                               child: Text(
                                 '${selectedLibrary.bolumler[index].bolumAdi} ',
@@ -116,19 +117,25 @@ class Ikinci extends StatelessWidget {
                             ),
                           ),
                           const Padding(
-                            padding: EdgeInsets.all(15.0),
+                            padding: EdgeInsets.all(8.0),
                           ),
                           Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20.0,
-                                  right: 20.0), 
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween
-                                ,children: [
-                                Text("En az dolu",style: TextStyle(fontWeight: FontWeight.bold),),
-                                Text("En fazla dolu",style: TextStyle(fontWeight: FontWeight.bold),)
-                              ],),
-                                          ),
+                            padding:
+                                const EdgeInsets.only(left: 20.0, right: 20.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "En az dolu",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "En fazla dolu",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -159,8 +166,8 @@ class Ikinci extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: List.generate(
                                   8 -
-                                      calculateRatio(
-                                          selectedLibrary.bolumler[index].DolulukOrani),
+                                      calculateRatio(selectedLibrary
+                                          .bolumler[index].DolulukOrani),
                                   (index) => Row(
                                     children: [
                                       Container(
